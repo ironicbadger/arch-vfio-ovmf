@@ -27,7 +27,7 @@ echo $HOSTNAME > /etc/hostname
 cat <<EOT >> /etc/pacman.conf
 [archlinuxfr]
 SigLevel = Never
-"Server = http://repo.archlinux.fr/$arch"
+Server = http://repo.archlinux.fr/\$arch
 EOT
 
 pacman -Syu \
