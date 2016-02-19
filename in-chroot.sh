@@ -65,12 +65,10 @@ pacman -Syu \
   reptyr \
   rsnapshot \
   screen \
-  skype \
   skype-call-recorder \
   sl \
   samba \
   smbclient \
-  steam \
   strace \
   sudo \
   teamspeak3 \
