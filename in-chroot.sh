@@ -42,6 +42,7 @@ pacman -Syu \
   firefox \
   git \
   gnome \
+  gnome-tweak-tool \
   hddtemp \
   htop \
   iftop \
