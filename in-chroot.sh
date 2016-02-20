@@ -100,6 +100,7 @@ echo "$USER:password" | chpasswd
 
 systemctl enable sshd
 systemctl enable gdm
+systemctl enable NetworkManager
 
 # systemd-boot
 bootctl --path=/boot/$esp install
