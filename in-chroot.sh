@@ -100,7 +100,6 @@ echo "$USER:password" | chpasswd
 
 systemctl enable sshd
 systemctl enable gdm
-systemctl enable libvirtd
 
 # systemd-boot
 bootctl --path=/boot/$esp install
