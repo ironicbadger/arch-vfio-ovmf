@@ -26,6 +26,9 @@ echo $HOSTNAME > /etc/hostname
 
 # packages
 cat <<EOT >> /etc/pacman.conf
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+
 [archlinuxfr]
 SigLevel = Never
 Server = http://repo.archlinux.fr/\$arch
@@ -71,6 +74,7 @@ pacman -Syu \
   sl \
   samba \
   smbclient \
+  steam \
   strace \
   sudo \
   teamspeak3 \
