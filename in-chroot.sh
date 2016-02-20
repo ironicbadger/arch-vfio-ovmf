@@ -16,6 +16,7 @@ echo ""
 
 ### Doing actual stuff
 echo en_GB.UTF-8 UTF-8 > /etc/locale.gen
+locale-gen
 echo LANG=en_GB.UTF-8 > /etc/locale.conf
 export LANG=en_GB.UTF-8
 ln -s /usr/share/zoneinfo/Europe/London /etc/localtime
