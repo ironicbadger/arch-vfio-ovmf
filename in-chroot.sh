@@ -5,7 +5,7 @@ echo "Enter the target hostname..."
 read HOSTNAME
 echo "Enter the main user (usually alex)..."
 read USER
-echo "Please enter the partition to install systemd-boot on (sda2):"
+echo "Enter rootfs partition to install systemd-boot, usually sda2:"
 read PARTITION
 
 echo "Hostname:               '$HOSTNAME'"
