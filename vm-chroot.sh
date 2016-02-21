@@ -64,7 +64,6 @@ pacman -Syu \
   nmap \
   ntp \
   nvidia \
-  nvidia \
   nvidia-settings \
   openssh \
   openttd \
