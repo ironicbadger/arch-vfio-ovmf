@@ -45,8 +45,6 @@ pacman -Syu \
   docker \
   firefox \
   git \
-  gnome \
-  gnome-tweak-tool \
   hddtemp \
   htop \
   iftop \
@@ -61,9 +59,6 @@ pacman -Syu \
   networkmanager \
   nmap \
   ntp \
-  nvidia \
-  nvidia-libgl \
-  nvidia-settings \
   openssh \
   openttd \
   openttd-opengfx \
