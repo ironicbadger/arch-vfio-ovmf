@@ -35,59 +35,11 @@ Server = http://repo.archlinux.fr/\$arch
 EOT
 
 pacman -Syu \
-  ansible \
-  audacity \
-  bash-completion \
-  bridge-utils \
-  chromium \
-  curl \
-  deja-dup \
-  docker \
-  firefox \
-  git \
-  hddtemp \
-  htop \
-  iftop \
-  iotop \
-  lame \
-  libvirt \
-  lm_sensors \
-  lsof \
-  mc \
-  mumble \
-  ncdu \
-  networkmanager \
-  nmap \
-  ntp \
   openssh \
-  openttd \
-  openttd-opengfx \
-  powertop \
-  qemu \
-  quassel-client \
-  reptyr \
-  rsnapshot \
-  screen \
-  skype-call-recorder \
-  sl \
-  samba \
-  smbclient \
-  steam \
-  strace \
   sudo \
-  teamspeak3 \
   tmux \
   tree \
-  vagrant \
-  vim \
-  virt-manager \
-  virtualbox \
-  virtualbox-guest-iso \
-  virtualbox-host-modules \
-  wget \
-  which \
-  yaourt \
-  youtube-dl
+  vim
 
 useradd -m -g users -s /bin/bash $USER
 usermod -a -G wheel $USER
