@@ -35,13 +35,9 @@ Server = http://repo.archlinux.fr/\$arch
 EOT
 
 pacman -Syu \
-  ansible \
-  audacity \
-  bash-completion \
   bridge-utils \
   chromium \
   curl \
-  deja-dup \
   docker \
   firefox \
   git \
@@ -51,57 +47,31 @@ pacman -Syu \
   htop \
   iftop \
   iotop \
-  lame \
-  lib32-nvidia-utils \
   libvirt \
   lm_sensors \
   lsof \
   mc \
-  mesa \
-  mumble \
   ncdu \
   networkmanager \
   nmap \
   ntp \
-  nvidia \
-  nvidia \
-  nvidia-settings \
   openssh \
-  openttd \
-  openttd-opengfx \
-  powertop \
   qemu \
   quassel-client \
-  reptyr \
-  rsnapshot \
-  samba \
   screen \
-  skype-call-recorder \
-  sl \
+  samba \
   smbclient \
-  steam \
-  strace \
   sudo \
-  teamspeak3 \
+  synergy \
   tmux \
   tree \
-  vagrant \
   vim \
   virt-manager \
-  virtualbox \
-  virtualbox-guest-iso \
-  virtualbox-host-modules \
   wget \
   which \
-  xorg-server \
-  xorg-server-devel
-  xorg-server-utils \
-  xorg-twm \
-  xorg-xclock \
-  xorg-xinit \
-  xterm \
+  xf86-video-intel \
   yaourt \
-  youtube-dl \
+  youtube-dl
 
 useradd -m -g users -s /bin/bash $USER
 usermod -a -G wheel $USER
@@ -130,14 +100,5 @@ initrd  /initramfs-linux.img
 options root=/dev/$PARTITION rw intel_iommu=on
 EOT
 
-nvidia-xconfig
-
-cp /etc/X11/xorg.conf /etc/X11/xorg.conf.d/20-nvidia.conf
-
-mkinitcpio -p linux
-
 echo ""
-echo "Place the following modules into your mkinitcpio.conf MODULES"
-echo "vfio vfio_iommu_type1 vfio_pci vfio_virqfd"
-echo ""
-echo "Also make sure to edit the VM.xml file with <kvm>hidden</> stuff..."
+echo "All done. Just add your modules to mkinitcpio.conf"
