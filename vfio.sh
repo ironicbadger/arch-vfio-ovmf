@@ -59,7 +59,7 @@ EOT
 
 cat <<EOT>> /etc/netctl/ethernet
 Description='enp3s0 ethernet connection'
-Interface=eno1
+Interface=enp3s0
 Connection=ethernet
 IP=no
 EOT
