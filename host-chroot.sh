@@ -35,9 +35,13 @@ Server = http://repo.archlinux.fr/\$arch
 EOT
 
 pacman -Syu \
+  ansible \
+  audacity \
+  bash-completion \
   bridge-utils \
   chromium \
   curl \
+  deja-dup \
   docker \
   firefox \
   git \
@@ -47,29 +51,55 @@ pacman -Syu \
   htop \
   iftop \
   iotop \
+  lame \
+  lib32-nvidia-utils \
   libvirt \
   lm_sensors \
   lsof \
   mc \
+  mesa \
+  mumble \
   ncdu \
   networkmanager \
   nmap \
   ntp \
+  nvidia \
+  nvidia-settings \
   openssh \
+  openttd \
+  openttd-opengfx \
+  powertop \
   qemu \
   quassel-client \
-  screen \
+  reptyr \
+  rsnapshot \
   samba \
+  screen \
+  skype-call-recorder \
+  sl \
   smbclient \
+  steam \
+  strace \
   sudo \
   synergy \
+  teamspeak3 \
   tmux \
   tree \
+  vagrant \
   vim \
   virt-manager \
+  virtualbox \
+  virtualbox-guest-iso \
+  virtualbox-host-modules \
   wget \
   which \
-  xf86-video-intel \
+  xorg-server \
+  xorg-server-devel
+  xorg-server-utils \
+  xorg-twm \
+  xorg-xclock \
+  xorg-xinit \
+  xterm \
   yaourt \
   youtube-dl
 
