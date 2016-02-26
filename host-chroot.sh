@@ -3,7 +3,7 @@
 
 echo "Enter the target hostname..."
 read HOSTNAME
-echo "Enter the main user (usually alex)..."
+echo "Enter the main user (usually kolbasz)..."
 read USER
 echo "Enter rootfs partition to install systemd-boot, usually sda2:"
 read PARTITION
@@ -15,11 +15,11 @@ echo ""
 echo ""
 
 ### Doing actual stuff
-echo en_GB.UTF-8 UTF-8 > /etc/locale.gen
+echo en_US.UTF-8 UTF-8 > /etc/locale.gen
 locale-gen
-echo LANG=en_GB.UTF-8 > /etc/locale.conf
-export LANG=en_GB.UTF-8
-ln -s /usr/share/zoneinfo/Europe/London /etc/localtime
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+export LANG=en_US.UTF-8
+ln -s /usr/share/zoneinfo/America/New York /etc/localtime
 hwclock --systohc --utc
 mkinitcpio -p linux
 echo $HOSTNAME > /etc/hostname
@@ -35,41 +35,41 @@ Server = http://repo.archlinux.fr/\$arch
 EOT
 
 pacman -Syu \
-  ansible \
+#  ansible \
   audacity \
   bash-completion \
   bridge-utils \
-  chromium \
+#  chromium \
   curl \
   deja-dup \
   docker \
-  firefox \
+#  firefox \
   git \
-  gnome \
-  gnome-tweak-tool \
+#  gnome \
+#  gnome-tweak-tool \
   hddtemp \
   htop \
   iftop \
   iotop \
   lame \
-  lib32-nvidia-utils \
-  libvirt \
+#  lib32-nvidia-utils \
+#  libvirt \
   lm_sensors \
   lsof \
   mc \
-  mesa \
+#  mesa \
   mumble \
   ncdu \
   networkmanager \
   nmap \
   ntp \
-  nvidia \
-  nvidia-settings \
+#  nvidia \
+#  nvidia-settings \
   openssh \
-  openttd \
-  openttd-opengfx \
+#  openttd \
+#  openttd-opengfx \
   powertop \
-  qemu \
+#  qemu \
   quassel-client \
   reptyr \
   rsnapshot \
@@ -78,27 +78,27 @@ pacman -Syu \
   skype-call-recorder \
   sl \
   smbclient \
-  steam \
+#  steam \
   strace \
   sudo \
   synergy \
   teamspeak3 \
   tmux \
   tree \
-  vagrant \
+#  vagrant \
   vim \
-  virt-manager \
-  virtualbox \
-  virtualbox-guest-iso \
-  virtualbox-host-modules \
+#  virt-manager \
+#  virtualbox \
+#  virtualbox-guest-iso \
+#  virtualbox-host-modules \
   wget \
   which \
-  xorg-server \
-  xorg-server-devel
-  xorg-server-utils \
-  xorg-twm \
-  xorg-xclock \
-  xorg-xinit \
+#  xorg-server \
+#  xorg-server-devel
+#  xorg-server-utils \
+#  xorg-twm \
+#  xorg-xclock \
+#  xorg-xinit \
   xterm \
   yaourt \
   youtube-dl
