@@ -38,6 +38,7 @@ pacman -Syu \
   audacity \
   bash-completion \
   bridge-utils \
+  btrfs-progs \
   chromium \
   curl \
   deja-dup \
