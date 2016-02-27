@@ -50,8 +50,8 @@ pacman -Syu \
   docker \
 #  firefox \
   git \
-#  gnome \
-#  gnome-tweak-tool \
+  gnome \
+  gnome-tweak-tool \
   grub \
   hddtemp \
   htop \
@@ -61,6 +61,7 @@ pacman -Syu \
 #  lib32-nvidia-utils \
   lib32-nvidia-340xx-libgl \
 #  libvirt \
+  lightdm \
   lm_sensors \
   lsof \
   mc \
