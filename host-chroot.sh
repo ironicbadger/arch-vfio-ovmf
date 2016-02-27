@@ -21,7 +21,6 @@ echo LANG=en_GB.UTF-8 > /etc/locale.conf
 export LANG=en_GB.UTF-8
 ln -s /usr/share/zoneinfo/Europe/London /etc/localtime
 hwclock --systohc --utc
-mkinitcpio -p linux
 echo $HOSTNAME > /etc/hostname
 
 # packages
@@ -50,6 +49,7 @@ pacman -Syu \
   hddtemp \
   htop \
   iftop \
+  intel-ucode \
   iotop \
   lame \
   lib32-nvidia-utils \
@@ -104,14 +104,16 @@ pacman -Syu \
   youtube-dl
 
 useradd -m -g users -s /bin/bash $USER
-usermod -a -G wheel $USER
+usermod -aG wheel docker $USER
 
-echo "root:password" | chpasswd
-echo "$USER:password" | chpasswd
+echo "root:22" | chpasswd
+echo "$USER:22" | chpasswd
 
 systemctl enable sshd
 systemctl enable gdm
 systemctl enable NetworkManager
+systemctl enable docker
+systemctl enable ntpd
 
 # systemd-boot
 bootctl --path=/boot/$esp install
@@ -126,9 +128,20 @@ EOT
 cat <<EOT >> /boot/loader/entries/arch.conf
 title   Arch Linux
 linux   /vmlinuz-linux
+initrd  /intel-ucode.img
 initrd  /initramfs-linux.img
 options root=/dev/$PARTITION rw intel_iommu=on
 EOT
+
+nvidia-xconfig
+cp /etc/X11/xorg.conf /etc/X11/xorg.conf.d/20-nvidia.conf
+
+mkinitcpio -p linux
+
+# rank pacman mirrors
+cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+sed '/^#S/ s|#||' -i /etc/pacman.d/mirrorlist.backup
+rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 
 echo ""
 echo "All done. Just add your modules to mkinitcpio.conf"
