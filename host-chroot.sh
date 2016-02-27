@@ -59,6 +59,7 @@ pacman -Syu \
   iotop \
   lame \
 #  lib32-nvidia-utils \
+  lib32-nvidia-340xx-libgl \
 #  libvirt \
   lm_sensors \
   lsof \
@@ -70,6 +71,8 @@ pacman -Syu \
   nmap \
   ntp \
 #  nvidia \
+nvidia-304xx \
+nvidia-304xx-libgl \
 #  nvidia-settings \
   openssh \
 #  openttd \
@@ -110,7 +113,9 @@ pacman -Syu \
 #  xterm \
   yaourt \
   youtube-dl
-
+  
+nvidia-xconfig
+  
 useradd -m -g users -s /bin/bash $USER
 usermod -a -G wheel $USER
 
