@@ -34,11 +34,16 @@ SigLevel = Never
 Server = http://repo.archlinux.fr/\$arch
 EOT
 
+cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup \
+sed '/^#S/ s|#||' -i /etc/pacman.d/mirrorlist.backup \
+rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+
 pacman -Syu \
 #  ansible \
   audacity \
   bash-completion \
   bridge-utils \
+  cinnamon \
 #  chromium \
   curl \
   deja-dup \
@@ -47,6 +52,7 @@ pacman -Syu \
   git \
 #  gnome \
 #  gnome-tweak-tool \
+  grub \
   hddtemp \
   htop \
   iftop \
@@ -68,6 +74,7 @@ pacman -Syu \
   openssh \
 #  openttd \
 #  openttd-opengfx \
+  os-prober \
   powertop \
 #  qemu \
   quassel-client \
@@ -82,6 +89,7 @@ pacman -Syu \
   strace \
   sudo \
   synergy \
+  terminator \
   teamspeak3 \
   tmux \
   tree \
@@ -99,7 +107,7 @@ pacman -Syu \
 #  xorg-twm \
 #  xorg-xclock \
 #  xorg-xinit \
-  xterm \
+#  xterm \
   yaourt \
   youtube-dl
 
@@ -109,26 +117,33 @@ usermod -a -G wheel $USER
 echo "root:password" | chpasswd
 echo "$USER:password" | chpasswd
 
+cat <<EOT >> /etc/bash.bashrc
+export EDITOR=nano
+EOT
+
 systemctl enable sshd
-systemctl enable gdm
+#systemctl enable gdm
 systemctl enable NetworkManager
 
-# systemd-boot
-bootctl --path=/boot/$esp install
-rm /boot/loader/loader.conf
+grub-install /dev/sdagrub-install --target=i386-pc /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
 
-cat <<EOT >> /boot/loader/loader.conf
-default arch
-timeout 1
-editor 0
-EOT
+## systemd-boot
+#bootctl --path=/boot/$esp install
+#rm /boot/loader/loader.conf
 
-cat <<EOT >> /boot/loader/entries/arch.conf
-title   Arch Linux
-linux   /vmlinuz-linux
-initrd  /initramfs-linux.img
-options root=/dev/$PARTITION rw intel_iommu=on
-EOT
+#cat <<EOT >> /boot/loader/loader.conf
+#default arch
+#timeout 1
+#editor 0
+#EOT
+
+#cat <<EOT >> /boot/loader/entries/arch.conf
+#title   Arch Linux
+#linux   /vmlinuz-linux
+#initrd  /initramfs-linux.img
+#options root=/dev/$PARTITION rw intel_iommu=on
+#EOT
 
 echo ""
 echo "All done. Just add your modules to mkinitcpio.conf"
