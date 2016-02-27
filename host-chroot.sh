@@ -137,14 +137,22 @@ initrd  /initramfs-linux.img
 options root=/dev/$PARTITION rw intel_iommu=on
 EOT
 
+# git setup
+echo "Configuring git..."
+git config --global user.email "alexktz@gmail.com"
+git config --global user.name "IronicBadger"
+git config --global push.default simple
+
+# configure X
+echo "Configuring X..."
 nvidia-xconfig
 cp /etc/X11/xorg.conf /etc/X11/xorg.conf.d/20-nvidia.conf
 
+# initramfs
 mkinitcpio -p linux
 
-echo "Ranking mirrors... Takes 5-10 minutes."
-
 # rank pacman mirrors
+echo "Ranking mirrors... Takes 5-10 minutes."
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
 sed '/^#S/ s|#||' -i /etc/pacman.d/mirrorlist.backup
 rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
