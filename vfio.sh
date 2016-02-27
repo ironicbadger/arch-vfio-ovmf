@@ -6,7 +6,11 @@ echo "Please enter main user for this system (alex):"
 read USER
 
 # setup arch for PCI passthrough
-pacman -Sy --noconfirm qemu rpmextract synergy
+pacman -Sy --noconfirm \
+  qemu \
+  rpmextract \
+  synergy
+
 usermod -aG libvirt $USER
 cd /tmp
 wget $URL
@@ -25,6 +29,8 @@ echo "Your new /etc/modprobe.d/vfio.conf looks like this..."
 echo "-----------"
 cat /etc/modprobe.d/vfio.conf
 echo ""
+
+read -p "Please press [Enter] to continue if this looks correct..."
 
 # backing up qemu.conf
 mv /etc/libvirt/qemu.conf /etc/libvirt/qemu.conf.orig
@@ -72,9 +78,8 @@ echo "Enabling libvirtd service..."
 systemctl enable libvirtd
 systemctl start libvirtd
 
-echo ""
-echo "Place the following modules into your mkinitcpio.conf MODULES"
-echo "vfio vfio_iommu_type1 vfio_pci vfio_virqfd"
-echo ""
-echo "YOU MUST RUN MKINITCPIO NOW"
-echo "if you dont, the vfio-pci devices won't be picked up"
+# virtio modules to initramfs
+sed -i 's/\(MODULES="\)/\1vfio vfio_iommu_type1 vfio_pci vfio_virqfd /' /etc/mkinitcpio.conf
+mkinitcpio -p linux
+
+echo "All setup for VFIO, time to reboot!"
