@@ -139,6 +139,8 @@ cp /etc/X11/xorg.conf /etc/X11/xorg.conf.d/20-nvidia.conf
 
 mkinitcpio -p linux
 
+echo "Ranking mirrors..."
+
 # rank pacman mirrors
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
 sed '/^#S/ s|#||' -i /etc/pacman.d/mirrorlist.backup
