@@ -64,6 +64,7 @@ pacman -Syu \
   networkmanager \
   nmap \
   ntp \
+  numix-themes \
   nvidia \
   nvidia-settings \
   openssh \
@@ -92,6 +93,7 @@ pacman -Syu \
   virtualbox \
   virtualbox-guest-iso \
   virtualbox-host-modules \
+  vorbis-tools \
   wget \
   which \
   xorg-server \
@@ -105,7 +107,8 @@ pacman -Syu \
   youtube-dl
 
 useradd -m -g users -s /bin/bash $USER
-usermod -aG wheel docker $USER
+usermod -aG wheel $USER
+usermod -aG docker $USER
 
 echo "root:22" | chpasswd
 echo "$USER:22" | chpasswd
@@ -139,7 +142,7 @@ cp /etc/X11/xorg.conf /etc/X11/xorg.conf.d/20-nvidia.conf
 
 mkinitcpio -p linux
 
-echo "Ranking mirrors..."
+echo "Ranking mirrors... Takes 5-10 minutes."
 
 # rank pacman mirrors
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
