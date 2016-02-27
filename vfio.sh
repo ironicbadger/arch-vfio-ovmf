@@ -59,7 +59,7 @@ echo options kvm ignore_msrs=1 > /etc/modprobe.d/kvm.conf
 cat <<EOT>> /etc/netctl/bridge
 Interface=br0
 Connection=bridge
-BindsToInterfaces=(eno1)
+BindsToInterfaces=(enp3s0)
 IP=dhcp
 EOT
 
