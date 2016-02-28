@@ -34,6 +34,7 @@ Server = http://repo.archlinux.fr/\$arch
 EOT
 
 pacman -Syu \
+  arandr \
   ansible \
   audacity \
   bash-completion \
@@ -102,6 +103,7 @@ pacman -Syu \
   xorg-twm \
   xorg-xclock \
   xorg-xinit \
+  xorg-xrandr \
   xterm \
   yaourt \
   youtube-dl
