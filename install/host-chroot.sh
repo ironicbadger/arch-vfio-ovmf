@@ -154,10 +154,14 @@ cp /etc/X11/xorg.conf /etc/X11/xorg.conf.d/20-nvidia.conf
 mkinitcpio -p linux
 
 # rank pacman mirrors
-echo "Ranking mirrors... Takes 5-10 minutes."
-cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
-sed '/^#S/ s|#||' -i /etc/pacman.d/mirrorlist.backup
-rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+# echo "Ranking mirrors... Takes 5-10 minutes."
+# cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+# sed '/^#S/ s|#||' -i /etc/pacman.d/mirrorlist.backup
+# rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+
+cd /opt 
+curl -LO https://raw.githubusercontent.com/IronicBadger/arch/master/install/post-install.sh
+curl -LO https://raw.githubusercontent.com/IronicBadger/arch/master/install/vfio.sh
 
 echo ""
 echo "All done. Just add your modules to mkinitcpio.conf"
