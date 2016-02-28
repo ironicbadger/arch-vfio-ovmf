@@ -12,4 +12,4 @@ xrandr \
 sudo virsh attach-device win10 usb-xmls/mouse-razer.xml
 
 # start synergyc
-sudo systemctl stop synergyc@alex.service
+sudo systemctl start synergyc@alex.service
