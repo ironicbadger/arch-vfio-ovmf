@@ -1,0 +1,9 @@
+#!/bin/bash
+# run this script to install systemd unit file
+
+if [ "$(id -u)" != "0" ]; then
+	echo "I must be run as root. Exiting..."
+	exit 1
+fi
+
+cp synergyc@.service /etc/systemd/system/synergyc@.service

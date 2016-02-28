@@ -1,0 +1,11 @@
+# install to /etc/systemd/system/
+[Unit]
+Description=Synergy Client Daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/synergyc --no-daemon win10
+User=%i
+
+[Install]
+WantedBy=multi-user.target
