@@ -91,7 +91,7 @@ pacman -Syu \
   virtualbox-guest-utils \
   virtualbox-guest-modules \
   virtualbox-guest-modules-lts \
-  pacman -S virtualbox-guest-dkms \
+  virtualbox-guest-dkms \
   vorbis-tools \
   wget \
   which \
