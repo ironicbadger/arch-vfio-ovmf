@@ -81,13 +81,19 @@ pacman -Syu \
   strace \
   sudo \
   synergy \
+  terminus-font \
   tmux \
   tree \
   vim \
   virtualbox-guest-utils \
+  virtualbox-guest-modules \
+  virtualbox-guest-modules-lts \
+  pacman -S virtualbox-guest-dkms \
   vorbis-tools \
   wget \
   which \
+  xf86-video-vesa \
+  xorg-apps \
   xorg-server \
   xorg-server-devel
   xorg-server-utils \
@@ -106,11 +112,19 @@ usermod -aG docker $USER
 echo "root:22" | chpasswd
 echo "$USER:22" | chpasswd
 
+# virtualbox
+cat <<EOT >> /etc/modules-load.d/virtualbox.conf
+vboxguest 
+vboxsf
+vboxvideo
+EOT
+
 systemctl enable sshd
 systemctl enable gdm
 systemctl enable NetworkManager
 systemctl enable docker
 systemctl enable ntpd
+systemctl enable vboxservice.service
 
 # Grub install
 grub-install --target=i386-pc /dev/$PARTITION
