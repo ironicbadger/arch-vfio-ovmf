@@ -93,6 +93,8 @@ pacman -Syu \
   wget \
   which \
   xf86-video-vesa \
+  xf86-input-vmmouse \
+  xf86-video-vmware \
   xorg-apps \
   xorg-server \
   xorg-server-devel
