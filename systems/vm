@@ -160,7 +160,7 @@ EOT
 
 
 cd /opt 
-curl -LO https://raw.githubusercontent.com/IronicBadger/arch/master/install/post-install.sh
+curl -LO https://raw.githubusercontent.com/Kolbasz12/arch/master/systems/post-install
 
 echo ""
 echo "All done. Just add your modules to mkinitcpio.conf"
