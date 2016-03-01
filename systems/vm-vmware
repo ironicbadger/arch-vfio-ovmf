@@ -160,7 +160,7 @@ EOT
 
 
 cd /opt 
-curl -LO https://raw.githubusercontent.com/Kolbasz12/arch/master/systems/post-install
+curl -LO https://raw.githubusercontent.com/Kolbasz12/arch/master/systems/post-install-vmware
 
 echo ""
 echo "All done. Just add your modules to mkinitcpio.conf"
