@@ -117,7 +117,7 @@ EOT
 echo "root:22" | chpasswd
 echo "$USER:22" | chpasswd
 
-# virtualbox
+# Resolution update on window resize
 cat <<EOT >> /etc/xdg/autostart/vmware-user.desktop
 [Desktop Entry]
 Type=Application
@@ -133,6 +133,7 @@ systemctl enable NetworkManager
 systemctl enable docker
 systemctl enable ntpd
 systemctl enable vmware-vmblock-fuse.service
+systemctl enable dkms.service
 
 # Grub install
 grub-install --target=i386-pc /dev/$PARTITION
