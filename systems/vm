@@ -84,6 +84,7 @@ pacman -Syu \
   tmux \
   tree \
   vim \
+  virtualbox-guest-utils \
   vorbis-tools \
   wget \
   which \
@@ -134,6 +135,12 @@ mkinitcpio -p linux
 # cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
 # sed '/^#S/ s|#||' -i /etc/pacman.d/mirrorlist.backup
 # rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+
+# teminal
+cat <<EOT >> /etc/vconsole.conf
+FONT=Lat2-Terminus16
+EOT
+
 
 cd /opt 
 curl -LO https://raw.githubusercontent.com/IronicBadger/arch/master/install/post-install.sh
