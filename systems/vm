@@ -144,11 +144,6 @@ git config --global user.email "kolbaszkarcsi@gmail.com"
 git config --global user.name "kolbasz12"
 git config --global push.default simple
 
-# configure X
-echo "Configuring X..."
-nvidia-xconfig
-cp /etc/X11/xorg.conf /etc/X11/xorg.conf.d/20-nvidia.conf
-
 # initramfs
 mkinitcpio -p linux
 
@@ -166,7 +161,6 @@ EOT
 
 cd /opt 
 curl -LO https://raw.githubusercontent.com/IronicBadger/arch/master/install/post-install.sh
-curl -LO https://raw.githubusercontent.com/IronicBadger/arch/master/install/vfio.sh
 
 echo ""
 echo "All done. Just add your modules to mkinitcpio.conf"
