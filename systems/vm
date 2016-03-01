@@ -66,8 +66,6 @@ pacman -Syu \
   nmap \
   ntp \
   numix-themes \
-  nvidia \
-  nvidia-settings \
   openssh \
   openttd \
   openttd-opengfx \
@@ -78,22 +76,14 @@ pacman -Syu \
   rsnapshot \
   samba \
   screen \
-  skype-call-recorder \
   sl \
   smbclient \
-  steam \
   strace \
   sudo \
   synergy \
-  teamspeak3 \
   tmux \
   tree \
-  vagrant \
   vim \
-  virt-manager \
-  virtualbox \
-  virtualbox-guest-iso \
-  virtualbox-host-modules \
   vorbis-tools \
   wget \
   which \
