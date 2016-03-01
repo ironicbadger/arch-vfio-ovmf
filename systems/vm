@@ -109,6 +109,11 @@ useradd -m -g users -s /bin/bash $USER
 usermod -aG wheel $USER
 usermod -aG docker $USER
 
+# sudoers
+cat <<EOT>> /etc/sudoers
+$USER ALL=(ALL) NOPASSWD: ALL
+EOT
+
 echo "root:22" | chpasswd
 echo "$USER:22" | chpasswd
 
