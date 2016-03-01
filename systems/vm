@@ -84,6 +84,9 @@ pacman -Syu \
   terminus-font \
   tmux \
   tree \
+  ttf-dejavu  \
+  ttf-droid  \
+  ttf-inconsolata \
   vim \
   virtualbox-guest-utils \
   virtualbox-guest-modules \
