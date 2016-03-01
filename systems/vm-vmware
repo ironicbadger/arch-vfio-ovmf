@@ -69,6 +69,7 @@ pacman -Syu \
   openssh \
   openttd \
   openttd-opengfx \
+  open-vm-tools \
   powertop \
   qemu \
   quassel-client \
@@ -88,11 +89,6 @@ pacman -Syu \
   ttf-droid  \
   ttf-inconsolata \
   vim \
-  vmw_balloon \
-  vmw_pvscsi \
-  vmw_vmci \
-  vmwgfx \
-  vmxnet3 \
   vorbis-tools \
   wget \
   which \
@@ -122,10 +118,13 @@ echo "root:22" | chpasswd
 echo "$USER:22" | chpasswd
 
 # virtualbox
-cat <<EOT >> /etc/modules-load.d/virtualbox.conf
-vboxguest 
-vboxsf
-vboxvideo
+cat <<EOT >> /etc/xdg/autostart/vmware-user.desktop
+[Desktop Entry]
+Type=Application
+Name=VMWare User Agent
+Exec=/usr/bin/vmware-user-suid-wrapper
+Icon=system-run
+Comment=Enable Unity, DnD, etc.
 EOT
 
 systemctl enable sshd
@@ -133,7 +132,7 @@ systemctl enable gdm
 systemctl enable NetworkManager
 systemctl enable docker
 systemctl enable ntpd
-systemctl enable vboxservice.service
+systemctl enable vmware-vmblock-fuse.service
 
 # Grub install
 grub-install --target=i386-pc /dev/$PARTITION
