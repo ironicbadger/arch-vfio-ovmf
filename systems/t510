@@ -1,5 +1,6 @@
 #!/bin/bash
 # run this once you're in the chroot
+# shortened URL: https://goo.gl/ZTNeQt
 
 echo "Enter the target hostname..."
 read HOSTNAME
