@@ -8,8 +8,9 @@ echo "Enter the target hostname..."
 read HOSTNAME
 echo "Enter the main user (usually kolbasz)..."
 read USER
-echo "Enter disk to install GRUB, usually sda:"
-read PARTITION
+echo "GRUB will install to /dev/sda, edit if needed"
+sleep 10s
+echo "wait 10s"
 
 echo "Hostname:               '$HOSTNAME'"
 echo "Username:               '$USER'"
@@ -130,7 +131,7 @@ systemctl enable docker
 systemctl enable ntpd
 
 # Grub install
-grub-install --target=i386-pc /dev/$PARTITION
+grub-install --target=i386-pc /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # git setup
