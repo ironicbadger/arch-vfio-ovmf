@@ -114,6 +114,10 @@ pacman -Syu \
   yaourt \
   youtube-dl
 
+# 10s delay to review messages on screen  
+sleep 10s
+echo "wait 10s"
+
 # add user
 useradd -m -g users -s /bin/bash $USER
 usermod -aG wheel $USER
@@ -130,6 +134,10 @@ systemctl enable NetworkManager
 systemctl enable docker
 systemctl enable ntpd
 
+# 5s delay to review messages on screen  
+sleep 5s
+echo "wait 5s"
+
 # Grub install
 grub-install --target=i386-pc /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
@@ -144,6 +152,10 @@ git config --global push.default simple
 echo "Configuring X..."
 nvidia-xconfig
 cp /etc/X11/xorg.conf /etc/X11/xorg.conf.d/20-nvidia.conf
+
+# 5s delay to review messages on screen  
+sleep 5s
+echo "wait 5s"
 
 # initramfs
 mkinitcpio -p linux
@@ -161,4 +173,3 @@ curl -LO https://raw.githubusercontent.com/Kolbasz12/arch/master/systems/post-in
 
 echo ""
 echo "All done. Just add your modules to mkinitcpio.conf"
-
