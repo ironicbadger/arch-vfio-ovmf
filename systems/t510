@@ -1,6 +1,8 @@
 #!/bin/bash
 # run this once you're in the chroot
 # shortened RAW URL: https://goo.gl/ZTNeQt
+# genfstab -U /mnt >> /mnt/etc/fstab
+# arch-chroot /mnt /bin/bash
 
 echo "Enter the target hostname..."
 read HOSTNAME
