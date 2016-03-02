@@ -12,8 +12,8 @@ echo "GRUB will install to /dev/sda, edit if needed"
 
 # 10s delay to ensure user sees grub is on /dev/sda 
 # in case that needs to be changed
-sleep 10s
 echo "wait 10s"
+sleep 10s
 
 echo "Hostname:               '$HOSTNAME'"
 echo "Username:               '$USER'"
@@ -117,8 +117,8 @@ pacman -Syu \
   youtube-dl
 
 # 10s delay to review messages on screen  
-sleep 10s
 echo "wait 10s"
+sleep 10s
 
 # add user
 useradd -m -g users -s /bin/bash $USER
@@ -137,8 +137,8 @@ systemctl enable docker
 systemctl enable ntpd
 
 # 5s delay to review messages on screen  
-sleep 5s
 echo "wait 5s"
+sleep 5s
 
 # Grub install
 grub-install --target=i386-pc /dev/sda
@@ -156,8 +156,8 @@ nvidia-xconfig
 cp /etc/X11/xorg.conf /etc/X11/xorg.conf.d/20-nvidia.conf
 
 # 5s delay to review messages on screen  
-sleep 5s
 echo "wait 5s"
+sleep 5s
 
 # initramfs
 mkinitcpio -p linux
