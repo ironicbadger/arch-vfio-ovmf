@@ -51,6 +51,7 @@ pacman -Syu \
   git \
   gnome \
   gnome-tweak-tool \
+  grub \
   hddtemp \
   htop \
   iftop \
@@ -102,7 +103,7 @@ pacman -Syu \
   wget \
   which \
   xorg-server \
-  xorg-server-devel
+  xorg-server-devel \
   xorg-server-utils \
   xorg-twm \
   xorg-xclock \
