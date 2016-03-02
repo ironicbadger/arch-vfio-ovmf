@@ -13,7 +13,7 @@ read PARTITION
 
 echo "Hostname:               '$HOSTNAME'"
 echo "Username:               '$USER'"
-echo "systemd-boot partition: '/dev/$PARTITION'"
+#echo "systemd-boot partition: '/dev/$PARTITION'"
 echo ""
 echo ""
 
