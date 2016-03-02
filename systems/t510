@@ -76,7 +76,6 @@ pacman -Syu \
   numix-themes \
   nvidia-340xx \
   nvidia-340xx-libgl \
-  nvidia-settings \
   openssh \
   openttd \
   openttd-opengfx \
