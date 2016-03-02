@@ -109,13 +109,16 @@ pacman -Syu \
   yaourt \
   youtube-dl
 
+# add user
 useradd -m -g users -s /bin/bash $USER
 usermod -aG wheel $USER
 usermod -aG docker $USER
 
+# set default passwords to 22
 echo "root:22" | chpasswd
 echo "$USER:22" | chpasswd
 
+# enable services
 systemctl enable sshd
 systemctl enable gdm
 systemctl enable NetworkManager
@@ -146,9 +149,10 @@ mkinitcpio -p linux
 # sed '/^#S/ s|#||' -i /etc/pacman.d/mirrorlist.backup
 # rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 
+# more scripts, post install
 cd /opt 
 curl -LO https://raw.githubusercontent.com/IronicBadger/arch/master/install/post-install.sh
-curl -LO https://raw.githubusercontent.com/IronicBadger/arch/master/install/vfio.sh
+# curl -LO https://raw.githubusercontent.com/IronicBadger/arch/master/install/vfio.sh
 
 echo ""
 echo "All done. Just add your modules to mkinitcpio.conf"
