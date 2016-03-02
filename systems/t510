@@ -54,7 +54,7 @@ pacman -Syu \
   intel-ucode \
   iotop \
   lame \
-  lib32-nvidia-utils \
+  lib32-nvidia-340xx-libgl \
   libvirt \
   lm_sensors \
   lsof \
@@ -66,7 +66,8 @@ pacman -Syu \
   nmap \
   ntp \
   numix-themes \
-  nvidia \
+  nvidia-340xx \
+  nvidia-340xx-libgl \
   nvidia-settings \
   openssh \
   openttd \
