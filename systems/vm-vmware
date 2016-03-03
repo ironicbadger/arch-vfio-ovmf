@@ -97,7 +97,7 @@ pacman -Syu \
   xf86-video-vmware \
   xorg-apps \
   xorg-server \
-  xorg-server-devel
+  xorg-server-devel \
   xorg-server-utils \
   xorg-twm \
   xorg-xclock \
