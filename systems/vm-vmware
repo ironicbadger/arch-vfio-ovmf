@@ -113,7 +113,7 @@ usermod -aG docker $USER
 
 # sudoers
 cat <<EOT>> /etc/sudoers
-$USER ALL=(ALL) NOPASSWD: ALL
+$wheel ALL=(ALL) NOPASSWD: ALL
 EOT
 
 echo "root:22" | chpasswd
