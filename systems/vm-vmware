@@ -5,8 +5,8 @@ echo "Enter the target hostname..."
 read HOSTNAME
 echo "Enter the main user (usually kolbasz)..."
 read USER
-echo "Enter disk to install GRUB, usually sda:"
-read PARTITION
+#echo "Enter disk to install GRUB, usually sda:"
+#read PARTITION
 
 echo "Hostname:               '$HOSTNAME'"
 echo "Username:               '$USER'"
@@ -138,7 +138,7 @@ systemctl enable vmware-vmblock-fuse.service
 systemctl enable dkms.service
 
 # Grub install
-grub-install --target=i386-pc /dev/$PARTITION
+grub-install --target=i386-pc /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # git setup
