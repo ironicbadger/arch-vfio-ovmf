@@ -32,3 +32,6 @@ packer -S --noconfirm \
   teamviewer \
   ttf-roboto \
   ttf-roboto-mono
+  
+# icaclient ssl cert fix
+sudo ln -sf /etc/ssl/certs/* /opt/Citrix/ICAClient/keystore/cacerts/
