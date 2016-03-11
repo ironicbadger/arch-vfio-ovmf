@@ -91,14 +91,11 @@ pacman -Syu \
   vagrant \
   vim \
   virt-manager \
-  virtualbox \
-  virtualbox-guest-iso \
-  virtualbox-host-modules \
   vorbis-tools \
   wget \
   which \
   xorg-server \
-  xorg-server-devel
+  xorg-server-devel \
   xorg-server-utils \
   xorg-twm \
   xorg-xclock \
