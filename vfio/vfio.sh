@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "Please paste the URL from https://www.kraxel.org/repos/jenkins/edk2/ for edk2:"
+# https://www.kraxel.org/repos/jenkins/edk2/edk2.git-ovmf-x64-0-20160915.b2138.g490acf8.noarch.rpm
 read URL
 echo "Please enter main user for this system (alex):"
 read USER
@@ -59,7 +60,7 @@ echo options kvm ignore_msrs=1 > /etc/modprobe.d/kvm.conf
 cat <<EOT>> /etc/netctl/bridge
 Interface=br0
 Connection=bridge
-BindsToInterfaces=(enp3s0)
+BindsToInterfaces=(enp0s31f6)
 IP=dhcp
 EOT
 

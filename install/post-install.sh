@@ -7,7 +7,7 @@ yaourt -S --noconfirm \
 echo "Time to install a lot of stuff..."
 
 packer -S --noconfirm \
-  atom-editor-bin \
+  atom \
   chromium-pepper-flash \
   corebird \
   gnome-shell-extension-battery-percentage-git \
@@ -28,6 +28,7 @@ packer -S --noconfirm \
   numix-icon-theme-git \
   packer-io \
   pulseaudio-dlna \
+  slack-desktop \
   spotify \
   teamviewer \
   ttf-roboto \
