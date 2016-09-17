@@ -5,7 +5,7 @@ echo "Enter the target hostname..."
 read HOSTNAME
 echo "Enter the main user (usually alex)..."
 read USER
-echo "Enter rootfs partition to install systemd-boot, usually sda2:"
+echo "Enter rootfs partition to install systemd-boot, usually sda2 (no /dev/):"
 read PARTITION
 
 echo "Hostname:               '$HOSTNAME'"
@@ -66,8 +66,8 @@ pacman -Syu \
   nmap \
   ntp \
   numix-themes \
-  nvidia \
-  nvidia-settings \
+  #nvidia \
+  #nvidia-settings \
   openssh \
   openttd \
   openttd-opengfx \
@@ -142,10 +142,10 @@ git config --global user.email "alexktz@gmail.com"
 git config --global user.name "IronicBadger"
 git config --global push.default simple
 
-# configure X
-echo "Configuring X..."
-nvidia-xconfig
-cp /etc/X11/xorg.conf /etc/X11/xorg.conf.d/20-nvidia.conf
+# configure X for nvidia
+#echo "Configuring X..."
+#nvidia-xconfig
+#cp /etc/X11/xorg.conf /etc/X11/xorg.conf.d/20-nvidia.conf
 
 # initramfs
 mkinitcpio -p linux
@@ -156,9 +156,9 @@ mkinitcpio -p linux
 # sed '/^#S/ s|#||' -i /etc/pacman.d/mirrorlist.backup
 # rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 
-cd /opt 
+cd /opt
 curl -LO https://raw.githubusercontent.com/IronicBadger/arch/master/install/post-install.sh
-curl -LO https://raw.githubusercontent.com/IronicBadger/arch/master/install/vfio.sh
+curl -LO https://raw.githubusercontent.com/IronicBadger/arch/master/vfio/vfio.sh
 
 echo ""
 echo "All done. Just add your modules to mkinitcpio.conf"
