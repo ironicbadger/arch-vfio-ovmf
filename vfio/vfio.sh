@@ -64,8 +64,8 @@ IP=dhcp
 EOT
 
 cat <<EOT>> /etc/netctl/ethernet
-Description='enp3s0 ethernet connection'
-Interface=enp3s0
+Description='enp0s31f6 ethernet connection'
+Interface=enp0s31f6
 Connection=ethernet
 IP=no
 EOT
