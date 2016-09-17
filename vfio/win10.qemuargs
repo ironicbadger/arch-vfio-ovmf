@@ -1,0 +1,47 @@
+LC_ALL=C PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin QEMU_AUDIO_DRV=none \
+/usr/sbin/qemu-system-x86_64 \
+  -name guest=win10,debug-threads=on \
+  -object secret,id=masterKey0,format=raw,file=/var/lib/libvirt/qemu/domain--1-win10/master-key.aes \
+  -machine pc-i440fx-2.7,accel=kvm,usb=off,vmport=off \
+  -cpu Skylake-Client,hv_time,hv_relaxed,hv_vapic,hv_spinlocks=0x1fff,hv_vendor_id=123456789ab,kvm=off \
+  -drive file=/usr/share/edk2.git/ovmf-x64/OVMF_CODE-pure-efi.fd,if=pflash,format=raw,unit=0,readonly=on \
+  -drive file=/var/lib/libvirt/qemu/nvram/win10_VARS.fd,if=pflash,format=raw,unit=1 \
+  -m 16384 \
+  -realtime mlock=off \
+  -smp 6,sockets=1,cores=6,threads=1 \
+  -uuid 714b6635-a4f5-4bd9-8f3e-83e163a2b4f7 \
+  -display none \
+  -no-user-config \
+  -nodefaults \
+  -chardev socket,id=charmonitor,path=/var/lib/libvirt/qemu/domain--1-win10/monitor.sock,server,nowait \
+  -mon chardev=charmonitor,id=monitor,mode=control \
+  -rtc base=localtime,driftfix=slew \
+  -global kvm-pit.lost_tick_policy=discard \
+  -no-hpet \
+  -no-shutdown \
+  -global PIIX4_PM.disable_s3=1 \
+  -global PIIX4_PM.disable_s4=1 \
+  -boot strict=on \
+  -device ich9-usb-ehci1,id=usb,bus=pci.0,addr=0x5.0x7 \
+  -device ich9-usb-uhci1,masterbus=usb.0,firstport=0,bus=pci.0,multifunction=on,addr=0x5 \
+  -device ich9-usb-uhci2,masterbus=usb.0,firstport=2,bus=pci.0,addr=0x5.0x1 \
+  -device ich9-usb-uhci3,masterbus=usb.0,firstport=4,bus=pci.0,addr=0x5.0x2 \
+  -drive file=/var/lib/libvirt/images/win10.qcow2,format=qcow2,if=none,id=drive-virtio-disk0 \
+  -device virtio-blk-pci,scsi=off,bus=pci.0,addr=0x4,drive=drive-virtio-disk0,id=virtio-disk0,bootindex=1 \
+  -drive file=/home/alex/Downloads/Win10_English_x64.iso,format=raw,if=none,id=drive-ide0-0-1,readonly=on \
+  -device ide-cd,bus=ide.0,unit=1,drive=drive-ide0-0-1,id=ide0-0-1 \
+  -drive file=/home/alex/Downloads/virtio-win-0.1.118.iso,format=raw,if=none,id=drive-ide0-1-0,readonly=on \
+  -device ide-cd,bus=ide.1,unit=0,drive=drive-ide0-1-0,id=ide0-1-0 \
+  -netdev tap,fd=24,id=hostnet0 \
+  -device virtio-net-pci,netdev=hostnet0,id=net0,mac=52:54:00:26:89:cd,bus=pci.0,addr=0x2 \
+  -chardev spicevmc,id=charredir0,name=usbredir \
+  -device usb-redir,chardev=charredir0,id=redir0,bus=usb.0,port=1 \
+  -chardev spicevmc,id=charredir1,name=usbredir \
+  -device usb-redir,chardev=charredir1,id=redir1,bus=usb.0,port=2 \
+  -device vfio-pci,host=01:00.0,id=hostdev0,bus=pci.0,addr=0x6 \
+  -device vfio-pci,host=01:00.1,id=hostdev1,bus=pci.0,addr=0x7 \
+  -device usb-host,hostbus=1,hostaddr=6,id=hostdev2,bus=usb.0,port=3 \
+  -device usb-host,hostbus=1,hostaddr=5,id=hostdev3,bus=usb.0,port=4 \
+  -device vfio-pci,host=03:00.0,id=hostdev4,bus=pci.0,addr=0x3 \
+  -device virtio-balloon-pci,id=balloon0,bus=pci.0,addr=0x8 \
+  -msg timestamp=on
