@@ -42,7 +42,6 @@ pacman -Syu \
   btrfs-progs \
   chromium \
   curl \
-  deja-dup \
   docker \
   firefox \
   git \
@@ -54,18 +53,15 @@ pacman -Syu \
   intel-ucode \
   iotop \
   lame \
-  lib32-nvidia-utils \
+  #lib32-nvidia-utils \
   libvirt \
   lm_sensors \
   lsof \
   mc \
   mesa \
-  mumble \
   ncdu \
-  networkmanager \
   nmap \
   ntp \
-  numix-themes \
   #nvidia \
   #nvidia-settings \
   openssh \
@@ -74,8 +70,6 @@ pacman -Syu \
   powertop \
   qemu \
   quassel-client \
-  reptyr \
-  rsnapshot \
   samba \
   screen \
   skype-call-recorder \
@@ -91,12 +85,10 @@ pacman -Syu \
   vagrant \
   vim \
   virt-manager \
-  vorbis-tools \
   wget \
   which \
   xorg-server \
   xorg-server-devel \
-  xorg-server-utils \
   xorg-twm \
   xorg-xclock \
   xorg-xinit \
