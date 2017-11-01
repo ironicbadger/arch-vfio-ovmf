@@ -33,7 +33,7 @@ SigLevel = Never
 Server = http://repo.archlinux.fr/\$arch
 EOT
 
-pacman -Syu \
+pacman -Syu --needed \
   arandr \
   ansible \
   audacity \
@@ -54,7 +54,6 @@ pacman -Syu \
   intel-ucode \
   iotop \
   lame \
-  #lib32-nvidia-utils \
   libvirt \
   lm_sensors \
   lsof \
@@ -63,8 +62,6 @@ pacman -Syu \
   ncdu \
   nmap \
   ntp \
-  #nvidia \
-  #nvidia-settings \
   openssh \
   openttd \
   openttd-opengfx \
@@ -73,7 +70,6 @@ pacman -Syu \
   quassel-client \
   samba \
   screen \
-  skype-call-recorder \
   sl \
   smbclient \
   steam \
@@ -97,6 +93,9 @@ pacman -Syu \
   xterm \
   yaourt \
   youtube-dl
+  #lib32-nvidia-utils \
+  #nvidia \
+  #nvidia-settings \
 
 useradd -m -g users -s /bin/bash $USER
 usermod -aG wheel $USER
