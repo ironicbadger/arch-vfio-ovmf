@@ -40,6 +40,7 @@ pacman -Syu \
   bash-completion \
   bridge-utils \
   btrfs-progs \
+  ccache \
   chromium \
   curl \
   docker \
@@ -109,6 +110,23 @@ systemctl enable gdm
 systemctl enable NetworkManager
 systemctl enable docker
 systemctl enable ntpd
+
+# ccache
+SEARCH=" \!ccache "
+REPLACE=" ccache "
+perl -i -pe "s/$SEARCH/$REPLACE/g" /etc/makepkg.conf
+# Uses more threads for compilation
+SEARCH="#MAKEFLAGS=\"-j.\""
+REPLACE="MAKEFLAGS=\"-j$(nproc)\""
+perl -i -pe "s/$SEARCH/$REPLACE/g" /etc/makepkg.conf
+# Disables compression of packages
+SEARCH="PKGEXT=\'.pkg.tar.xz\'"
+REPLACE="PKGEXT=\'.pkg.tar\'"
+perl -i -pe "s/$SEARCH/$REPLACE/g" /etc/makepkg.conf
+# Uses more threads for compression
+SEARCH="COMPRESSXZ=\(xz -c -z -\)"
+REPLACE="COMPRESSXZ=(xz -c -z --threads=$(nproc))"
+perl -i -pe "s/$SEARCH/$REPLACE/g" /etc/makepkg.conf
 
 # systemd-boot
 bootctl --path=/boot/$esp install
