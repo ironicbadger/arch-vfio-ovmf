@@ -1,0 +1,8 @@
+pacman -Syu \
+  xbindkeys \
+  xautomation \
+  xvkbd
+  
+## optional
+
+yaourt -S solaar
