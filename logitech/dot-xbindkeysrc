@@ -1,0 +1,5 @@
+# Mouse Buttons
+"xvkbd -xsendevent -text "\[XF86Back]""
+b:8 
+"xvkbd -xsendevent -text "\[XF86Forward]""
+b:9
