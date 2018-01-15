@@ -1,0 +1,173 @@
+#!/bin/bash
+# run this once you're in the chroot
+
+echo "Enter the target hostname..."
+read HOSTNAME
+echo "Enter the main user (usually kolbasz)..."
+read USER
+#echo "Enter disk to install GRUB, usually sda:"
+#read PARTITION
+
+echo "Hostname:               '$HOSTNAME'"
+echo "Username:               '$USER'"
+echo "systemd-boot partition: '/dev/$PARTITION'"
+echo ""
+echo ""
+
+### Doing actual stuff
+echo en_US.UTF-8 UTF-8 > /etc/locale.gen
+locale-gen
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+export LANG=en_US.UTF-8
+ln -s /usr/share/zoneinfo/America/New_York /etc/localtime
+hwclock --systohc --utc
+echo $HOSTNAME > /etc/hostname
+
+# packages
+cat <<EOT >> /etc/pacman.conf
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+
+[archlinuxfr]
+SigLevel = Never
+Server = http://repo.archlinux.fr/\$arch
+EOT
+
+pacman -Syu \
+  arandr \
+  ansible \
+  audacity \
+  bash-completion \
+  bridge-utils \
+  btrfs-progs \
+  chromium \
+  curl \
+  deja-dup \
+  docker \
+  firefox \
+  git \
+  gnome \
+  gnome-tweak-tool \
+  hddtemp \
+  htop \
+  iftop \
+  intel-ucode \
+  iotop \
+  lame \
+  lib32-nvidia-utils \
+  libvirt \
+  lm_sensors \
+  lsof \
+  mc \
+  mesa \
+  mumble \
+  ncdu \
+  networkmanager \
+  nmap \
+  ntp \
+  numix-themes \
+  openssh \
+  openttd \
+  openttd-opengfx \
+  open-vm-tools \
+  powertop \
+  qemu \
+  quassel-client \
+  reptyr \
+  rsnapshot \
+  samba \
+  screen \
+  sl \
+  smbclient \
+  strace \
+  sudo \
+  synergy \
+  terminus-font \
+  tmux \
+  tree \
+  ttf-dejavu  \
+  ttf-droid  \
+  ttf-inconsolata \
+  vim \
+  vorbis-tools \
+  wget \
+  which \
+  xf86-video-vesa \
+  xf86-input-vmmouse \
+  xf86-video-vmware \
+  xorg-apps \
+  xorg-server \
+  xorg-server-devel \
+  xorg-server-utils \
+  xorg-twm \
+  xorg-xclock \
+  xorg-xinit \
+  xorg-xrandr \
+  xterm \
+  yaourt \
+  youtube-dl
+
+useradd -m -g users -s /bin/bash $USER
+usermod -aG wheel $USER
+usermod -aG docker $USER
+
+# sudoers
+cat <<EOT>> /etc/sudoers
+$wheel ALL=(ALL) NOPASSWD: ALL
+EOT
+
+echo "root:22" | chpasswd
+echo "$USER:22" | chpasswd
+
+# Resolution update on window resize
+cat <<EOT >> /etc/xdg/autostart/vmware-user.desktop
+[Desktop Entry]
+Type=Application
+Name=VMWare User Agent
+Exec=/usr/bin/vmware-user-suid-wrapper
+Icon=system-run
+Comment=Enable Unity, DnD, etc.
+EOT
+
+systemctl enable sshd
+systemctl enable gdm
+systemctl enable NetworkManager
+systemctl enable docker
+systemctl enable ntpd
+systemctl enable vmware-vmblock-fuse.service
+systemctl enable dkms.service
+
+# Grub install
+grub-install --target=i386-pc /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+
+# git setup
+echo "Configuring git..."
+git config --global user.email "kolbaszkarcsi@gmail.com"
+git config --global user.name "kolbasz12"
+git config --global push.default simple
+
+# initramfs
+mkinitcpio -p linux
+
+# rank pacman mirrors
+# echo "Ranking mirrors... Takes 5-10 minutes."
+# cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+# sed '/^#S/ s|#||' -i /etc/pacman.d/mirrorlist.backup
+# rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+
+# teminal
+cat <<EOT >> /etc/vconsole.conf
+FONT=Lat2-Terminus16
+EOT
+
+
+cd /opt 
+curl -LO https://raw.githubusercontent.com/Kolbasz12/arch/master/systems/post-install-vmware
+
+echo ""
+echo "All done. Just add your modules to mkinitcpio.conf"
+echo "MODULES=... vmw_balloon vmw_pvscsi vsock vmw_vsock_vmci_transport ... and run mkinitcpio -p linux"
+echo "check /etc/arch-release"
+
+cat /proc/version > /etc/arch-release
